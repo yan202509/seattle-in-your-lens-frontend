@@ -13,5 +13,9 @@ export const getAllEvents = () => api.get('/events').then(res => res.data);
 export const getEventById = (id: string) => api.get(`/events/${id}`).then(res => res.data);
 
 
+export const likeEvent = async (id: number) => {
+    const response = await api.patch(`/events/${id}/like`);
+    return response.data; // This returns the updated Event object
+};
 
 export default api;

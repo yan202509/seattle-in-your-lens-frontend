@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getAllEvents  } from '../api/axios'; 
+import { getAllEvents, likeEvent  } from '../api/axios'; 
 import { Link } from 'react-router-dom';
 
 interface Event {
@@ -11,6 +11,7 @@ interface Event {
     created_at: string;
     cost_level: string;
     event_date: string;  
+    likes: number;
 }
 
 function Home() {
@@ -29,6 +30,25 @@ function Home() {
     fetchEvents();
     }, []);
 
+    const handleLike = async (e: React.MouseEvent, id: number) => {
+        // These two lines prevent the Link from opening when the button is clicked
+        e.preventDefault();
+        e.stopPropagation();
+        
+        try {
+            const updatedEvent = await likeEvent(id);
+            setEvents(prevEvents => 
+                prevEvents.map(event => 
+                    event.event_id === id ? updatedEvent : event
+                )
+            );
+        } catch (err) {
+            console.error('Error liking event:', err);
+        }
+    };
+
+
+
     return (
     <div>
         <h1>Seattle In Your Lens</h1>
@@ -41,7 +61,11 @@ function Home() {
                         {event.event_season} | {event.event_type} | {event.cost_level}
                     </p>
                     <p>{new Date(event.event_date).toLocaleString()}</p>
+                    <button onClick={(e) => handleLike(e, event.event_id)}>
+                            Like {event.likes}
+                        </button>
                 </Link>
+
             </div>
 ))}
     </div>
