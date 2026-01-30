@@ -10,6 +10,8 @@ const api = axios.create({
 
 export const getAllEvents = () => api.get('/events').then(res => res.data);
 
+export const getEventById = (id: string) => api.get(`/events/${id}`).then(res => res.data);
+
 
 
 export default api;

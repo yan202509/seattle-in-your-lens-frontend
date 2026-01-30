@@ -1,4 +1,3 @@
-// src/pages/CreateEvent.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axios';
@@ -27,7 +26,7 @@ function CreateEvent() {
         });
 
         console.log('Event created:', response.data);
-        alert('Event submitted successfully!');
+        alert('Event submitted successfully! Now return to HOME Page');
 
 
         setTitle('');

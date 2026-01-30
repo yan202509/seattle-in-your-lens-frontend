@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-// import api from '../api/axios';
 import { getAllEvents  } from '../api/axios'; 
-// import api, { getAllEvents, deleteEvent } from '../api/axios'; 
+import { Link } from 'react-router-dom';
 
 interface Event {
     event_id: number;
@@ -33,15 +32,17 @@ function Home() {
     return (
     <div>
         <h1>Seattle In Your Lens</h1>
-{events.map((event) => (
-    <div key={event.event_id}>
-    <h3>{event.event_title}</h3>
-    <p>{event.event_description}</p>
-    <p>
-        {event.event_season} | {event.event_type} | {event.cost_level}
-    </p>
-    <p>{new Date(event.event_date).toLocaleString()}</p>
-    </div>
+        {events.map((event) => (
+            <div key={event.event_id}>
+                <Link to={`/event/${event.event_id}`}>
+                    <h3>{event.event_title}</h3>
+                    <p>{event.event_description}</p>
+                    <p>
+                        {event.event_season} | {event.event_type} | {event.cost_level}
+                    </p>
+                    <p>{new Date(event.event_date).toLocaleString()}</p>
+                </Link>
+            </div>
 ))}
     </div>
     );
