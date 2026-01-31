@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getEventById } from '../api/axios';
+import { ReviewForm } from '../components/ReviewForm';
 
 interface Event {
     event_id: number;
@@ -10,6 +11,14 @@ interface Event {
     event_type: string;
     cost_level: string;
     event_date: string;
+    reviews: Review[];
+}
+
+interface Review {
+  id: number;
+  rating: number;
+  comment: string;
+  createdAt: string;
 }
 
 function EventDetails() {
@@ -31,6 +40,16 @@ function EventDetails() {
         fetchEvent();
     }, [id]);
 
+    // 2. This function adds the new review to the state so it appears immediately
+    const handleNewReview = (newReview: Review) => {
+        if (event) {
+            setEvent({
+                ...event,
+                reviews: [newReview, ...(event.reviews || [])] // Puts new review at the top, and return empty array instead of null
+            });
+        }
+    };
+
     if (!event) return <p>Loading event...</p>;
 
     return (
@@ -41,8 +60,41 @@ function EventDetails() {
             {event.event_season} | {event.event_type} | {event.cost_level}
         </p>
         <p>{new Date(event.event_date).toLocaleString()}</p>
+        <hr />
+            
+
+            <ReviewForm 
+                eventId={event.event_id} 
+                onReviewSuccess={handleNewReview} 
+            />
+
+            {event.reviews && event.reviews.length > 0 ? (
+                event.reviews.map((review) => (
+                    <div key={review.id}>
+                        <p>Rating: {review.rating}/5</p>
+                        <p>{review.comment}</p>
+                        <small>{new Date(review.createdAt).toLocaleDateString()}</small>
+                        <br /><br />
+                    </div>
+                ))
+            ) : (
+                <p>No comments yet.</p>
+            )}
         </div>
     );
 }
 
 export default EventDetails;
+
+
+
+
+
+
+
+
+
+
+
+
+
