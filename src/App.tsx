@@ -1,21 +1,37 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import EventDetails from './pages/EventDetails';
 import CreateEvent from './pages/CreateEvent';
-// import Login from './pages/Login';
+import type { User } from './types';
+
 import './App.css';
 import NoMatch from './pages/NoMatch';
 
 function App() {
-  return (
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  const handleLogin = () => {
+    setCurrentUser({ id: 1, username: "Seattle1" });
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+  };
+
+
+return (
     <>
-      <Navbar />
+      <Navbar 
+        currentUser={currentUser} 
+        onLogin={handleLogin} 
+        onLogout={handleLogout}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/event/:id" element={<EventDetails />} />
-        <Route path="/create" element={<CreateEvent />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/event/:id" element={<EventDetails currentUser={currentUser} />} />
+        <Route path="/create" element={<CreateEvent currentUser={currentUser} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>

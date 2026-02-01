@@ -1,4 +1,3 @@
-// src/api/axios.ts
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
@@ -25,5 +24,13 @@ export const getReviewsByEvent = (eventId: number) =>
 // Submit a new review
 export const addReview = (eventId: number, reviewData: { rating: number; comment: string }) => 
     api.post(`/events/${eventId}/reviews`, reviewData).then(res => res.data);
+
+
+// delete event along with all related comments
+export const deleteEvent = async (id: string | number) => {
+    const response = await api.delete(`/events/${id}`);
+    return response.data;
+};
+
 
 export default api;

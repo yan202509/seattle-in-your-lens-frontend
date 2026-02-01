@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getEventById } from '../api/axios';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getEventById, deleteEvent } from '../api/axios';
 import { ReviewForm } from '../components/ReviewForm';
+import type { User } from '../types';
 
 interface Event {
     event_id: number;
@@ -12,17 +13,23 @@ interface Event {
     cost_level: string;
     event_date: string;
     reviews: Review[];
+    creator: User;
 }
 
 interface Review {
-  id: number;
-  rating: number;
-  comment: string;
-  createdAt: string;
+    id: number;
+    rating: number;
+    comment: string;
+    createdAt: string;
 }
 
-function EventDetails() {
+interface EventDetailsProps {
+    currentUser: User | null;
+}
+
+function EventDetails({ currentUser }: EventDetailsProps) {
     const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
     const [event, setEvent] = useState<Event | null>(null);
 
     useEffect(() => {
@@ -40,6 +47,16 @@ function EventDetails() {
         fetchEvent();
     }, [id]);
 
+    const handleDelete = async () => {
+        if (!id || !window.confirm("Are you sure?")) return;
+        try {
+            await deleteEvent(id);
+            navigate('/');
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
     // 2. This function adds the new review to the state so it appears immediately
     const handleNewReview = (newReview: Review) => {
         if (event) {
@@ -53,7 +70,14 @@ function EventDetails() {
     if (!event) return <p>Loading event...</p>;
 
     return (
-        <div>
+        <div> 
+            {currentUser && event.creator && currentUser.id === event.creator.id && (
+                <div style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px', marginBottom: '20px', backgroundColor: '#f9f9f9' }}>
+                    <p><strong>Owner Actions:</strong></p>
+                    <button onClick={() => navigate(`/edit/${event.event_id}`)}>Edit Event</button>
+                    <button onClick={handleDelete} style={{ marginLeft: '10px', color: 'red' }}>Delete Event</button>
+                </div>
+            )}
         <h1>{event.event_title}</h1>
         <p>{event.event_description}</p>
         <p>
@@ -62,12 +86,10 @@ function EventDetails() {
         <p>{new Date(event.event_date).toLocaleString()}</p>
         <hr />
             
-
             <ReviewForm 
                 eventId={event.event_id} 
                 onReviewSuccess={handleNewReview} 
             />
-
             {event.reviews && event.reviews.length > 0 ? (
                 event.reviews.map((review) => (
                     <div key={review.id}>
@@ -85,16 +107,3 @@ function EventDetails() {
 }
 
 export default EventDetails;
-
-
-
-
-
-
-
-
-
-
-
-
-
