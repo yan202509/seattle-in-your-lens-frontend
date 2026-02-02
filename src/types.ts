@@ -14,8 +14,8 @@ export interface Review {
 
 export interface Event {
     event_id: number;
-    event_title: string;
-    event_description: string;
+    eventTitle: string;
+    eventDescription: string;
     event_season: string;
     event_type: string;
     cost_level: string;
