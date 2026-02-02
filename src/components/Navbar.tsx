@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
-import type { User } from '../pages/Login';
+import type { User } from '../types';
 
 
 
 interface NavbarProps {
     currentUser: User | null;
-    onLogin: () => void;
     onLogout: () => void;
 }
 
 
-function Navbar({ currentUser, onLogin, onLogout }: NavbarProps) {
+function Navbar({ currentUser,  onLogout }: NavbarProps) {
     return (
         <nav>
         <h1>nav bar thing: Seattle In Your Lens</h1>
@@ -23,7 +22,7 @@ function Navbar({ currentUser, onLogin, onLogout }: NavbarProps) {
                     <button onClick={onLogout}>Logout</button>
                 </div>
             ) : (
-                <button onClick={onLogin}>Log In (Seattle1)</button>
+                <li><Link to="/login">Login</Link></li>
             )}
         </ul>
     </nav>

@@ -2,26 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getEventById, deleteEvent } from '../api/axios';
 import { ReviewForm } from '../components/ReviewForm';
-import type { User } from '../types';
+import type { User, Event, Review } from '../types';
 
-interface Event {
-    event_id: number;
-    event_title: string;
-    event_description: string;
-    event_season: string;
-    event_type: string;
-    cost_level: string;
-    event_date: string;
-    reviews: Review[];
-    creator: User;
-}
-
-interface Review {
-    id: number;
-    rating: number;
-    comment: string;
-    createdAt: string;
-}
 
 interface EventDetailsProps {
     currentUser: User | null;
@@ -71,11 +53,12 @@ function EventDetails({ currentUser }: EventDetailsProps) {
 
     return (
         <div> 
-            {currentUser && event.creator && currentUser.id === event.creator.id && (
-                <div style={{ border: '1px solid #ccc', padding: '15px', borderRadius: '8px', marginBottom: '20px', backgroundColor: '#f9f9f9' }}>
-                    <p><strong>Owner Actions:</strong></p>
+
+            {currentUser && (currentUser.role === 'ADMIN' || (event.creator && currentUser.id === event.creator.id) ) && (
+                <div>
+                    <p>Actions:</p>
                     <button onClick={() => navigate(`/edit/${event.event_id}`)}>Edit Event</button>
-                    <button onClick={handleDelete} style={{ marginLeft: '10px', color: 'red' }}>Delete Event</button>
+                    <button onClick={handleDelete}>Delete Event</button>
                 </div>
             )}
         <h1>{event.event_title}</h1>

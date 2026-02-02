@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import EventDetails from './pages/EventDetails';
 import CreateEvent from './pages/CreateEvent';
 import type { User } from './types';
+import Login from './pages/Login';
 
 import './App.css';
 import NoMatch from './pages/NoMatch';
@@ -12,8 +13,9 @@ import NoMatch from './pages/NoMatch';
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  const handleLogin = () => {
-    setCurrentUser({ id: 1, username: "Seattle1" });
+  // check if getting the user succesfullu from backend
+  const handleLoginSuccess = (user: User) => {
+    setCurrentUser(user);
   };
 
   const handleLogout = () => {
@@ -25,7 +27,6 @@ return (
     <>
       <Navbar 
         currentUser={currentUser} 
-        onLogin={handleLogin} 
         onLogout={handleLogout}
       />
       <Routes>
@@ -33,6 +34,7 @@ return (
         <Route path="/event/:id" element={<EventDetails currentUser={currentUser} />} />
         <Route path="/create" element={<CreateEvent currentUser={currentUser} />} />
         <Route path="*" element={<NoMatch />} />
+        <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
       </Routes>
     </>
   );
