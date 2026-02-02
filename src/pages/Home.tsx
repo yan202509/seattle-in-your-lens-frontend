@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { getAllEvents, likeEvent  } from '../api/axios'; 
+import { getAllEvents, likeEvent, searchEvents  } from '../api/axios'; 
 import { Link } from 'react-router-dom';
 
 interface Event {
     event_id: number;
-    event_title: string;
-    event_description: string;
+    eventTitle: string; // quick fix for this project
+    eventDescription: string; 
     event_season: string;
     event_type: string;
     created_at: string;
@@ -16,6 +16,7 @@ interface Event {
 
 function Home() {
     const [events, setEvents] = useState<Event[]>([]);
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -29,6 +30,18 @@ function Home() {
 
     fetchEvents();
     }, []);
+
+    // search 
+    const handleSearch = async (e: React.FormEvent) => {
+            e.preventDefault();
+            try {
+                const results = await searchEvents(query);
+                setEvents(results);
+            } catch (err) {
+                console.error('Search failed', err);
+            }
+        };
+
 
     const handleLike = async (e: React.MouseEvent, id: number) => {
         // These two lines prevent the Link from opening when the button is clicked
@@ -52,11 +65,23 @@ function Home() {
     return (
     <div>
         <h1>Seattle In Your Lens</h1>
+
+        {/* ADDED: Simple search form */}
+            <form onSubmit={handleSearch}>
+                <input 
+                    placeholder="Search..." 
+                    value={query} 
+                    onChange={(e) => setQuery(e.target.value)} 
+                />
+                <button type="submit">Search</button>
+            </form>
+
+
         {events.map((event) => (
             <div key={event.event_id}>
                 <Link to={`/event/${event.event_id}`}>
-                    <h3>{event.event_title}</h3>
-                    <p>{event.event_description}</p>
+                    <h3>{event.eventTitle}</h3>
+                    <p>{event.eventDescription}</p>
                     <p>
                         {event.event_season} | {event.event_type} | {event.cost_level}
                     </p>

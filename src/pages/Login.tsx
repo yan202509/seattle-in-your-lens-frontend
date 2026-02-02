@@ -24,7 +24,7 @@ function Login({ onLoginSuccess }: LoginProps) {
             
             onLoginSuccess(response.data);
             navigate('/');
-        } catch (err) {
+        } catch {
             alert("Invalid username or password");
         }
     };

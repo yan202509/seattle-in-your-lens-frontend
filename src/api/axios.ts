@@ -32,5 +32,13 @@ export const deleteEvent = async (id: string | number) => {
     return response.data;
 };
 
+//search bar
+export const searchEvents = async (query: string) => {
+    const response = await api.get('/events/search', {
+        params: { query: query }
+    });
+    return response.data;
+};
+
 
 export default api;

@@ -57,11 +57,11 @@ function EventDetails({ currentUser }: EventDetailsProps) {
             {currentUser && (currentUser.role === 'ADMIN' || (event.creator && currentUser.id === event.creator.id) ) && (
                 <div>
                     <p>Actions:</p>
-                    <button onClick={() => navigate(`/edit/${event.event_id}`)}>Edit Event</button>
                     <button onClick={handleDelete}>Delete Event</button>
                 </div>
             )}
         <h1>{event.event_title}</h1>
+        <p><strong>Created by:</strong> {event.creator?.username || "Someone really nice but mysterious"}</p>
         <p>{event.event_description}</p>
         <p>
             {event.event_season} | {event.event_type} | {event.cost_level}
