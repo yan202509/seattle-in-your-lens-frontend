@@ -22,7 +22,7 @@ function CreateEvent({ currentUser }: CreateEventProps) {
         
         try {
             const response = await api.post('/events', {
-                event_title: title,
+                eventTitle: title,
                 event_description: description,
                 event_season: season,
                 event_type: indoorOutdoor,

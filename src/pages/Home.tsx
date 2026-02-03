@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getAllEvents, likeEvent, searchEvents  } from '../api/axios'; 
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 interface Event {
     event_id: number;
-    event_title: string; // quick fix for this project
+    eventTitle: string; 
     event_description: string; 
     event_season: string;
     event_type: string;
@@ -17,19 +18,21 @@ interface Event {
 function Home() {
     const [events, setEvents] = useState<Event[]>([]);
     const [query, setQuery] = useState("");
+    const location = useLocation();
 
     useEffect(() => {
         const fetchEvents = async () => {
         try {
             const response = await getAllEvents ();
             setEvents(response);
+            setQuery("");
         } catch (err) {
             console.error('Error fetching events:', err);
         }
     };
 
     fetchEvents();
-    }, []);
+    }, [location]);
 
     // search 
     const handleSearch = async (e: React.FormEvent) => {
@@ -55,7 +58,7 @@ function Home() {
                     event.event_id === id ? updatedEvent : event
                 )
             );
-        } catch (err) {
+        } catch (err) { 
             console.error('Error liking event:', err);
         }
     };
@@ -65,9 +68,8 @@ function Home() {
     return (
     <div className="home-container">
         <h1>Seattle In Your Lens</h1>
-
-        {/* ADDED: Simple search form */}
-            <form onSubmit={handleSearch} className="search-form">
+            {/* search form  */}
+            <form onSubmit={handleSearch} className="search-form"> 
                 <input 
                     placeholder="Search..." 
                     value={query} 
@@ -80,7 +82,7 @@ function Home() {
             {events.map((event) => (
                 <div key={event.event_id}>
                     <Link to={`/event/${event.event_id}`} className="event-link">
-                        <h3>{event.event_title}</h3>
+                        <h3>{event.eventTitle}</h3>
                         <p className="description">{event.event_description}</p>
                         <div className="details">
                             {event.event_season} | {event.event_type} | {event.cost_level}

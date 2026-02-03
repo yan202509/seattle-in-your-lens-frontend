@@ -60,7 +60,7 @@ function EventDetails({ currentUser }: EventDetailsProps) {
                     <button onClick={handleDelete}>Delete Event</button>
                 </div>
             )}
-        <h1>{event.event_title}</h1>
+        <h1>{event.eventTitle}</h1>
         <p><strong>Created by:</strong> {event.creator?.username || "Someone really nice but mysterious"}</p>
         <p>{event.event_description}</p>
         <p>
