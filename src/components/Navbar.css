@@ -1,0 +1,71 @@
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background-color: white;
+    border-bottom: 5px solid black; /* Bold bottom border */
+    margin-bottom: 20px;
+}
+
+.nav-logo {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the Home, Create, Login links */
+.nav-links a {
+    text-decoration: none;
+    color: black;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    border: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: var(--accent-gold);
+    border: 3px solid black;
+    box-shadow: 4px 4px 0px black; 
+}
+
+/* The User Section and Logout Button */
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* border-left: 3px solid black; */
+    padding-left: 20px;
+}
+
+.username {
+    font-weight: 700;
+}
+
+.logout-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: transform 0.1s;
+}
+
+.logout-btn:hover {
+    background-color: #ff4444; /* Turns red on hover */
+    transform: scale(1.05); /*the button gets bigger */
+}

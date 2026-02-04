@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import type { User } from '../types';
 
-
+import './Navbar.css';
 
 interface NavbarProps {
     currentUser: User | null;
@@ -11,18 +11,18 @@ interface NavbarProps {
 
 function Navbar({ currentUser,  onLogout }: NavbarProps) {
     return (
-        <nav>
-        <h1>nav bar thing: Seattle In Your Lens</h1>
-        <ul>
-            <li><Link to="/">Home</Link></li>
+        <nav className="main-navbar">
+        <h1 className="nav-logo">Seattle In Your Lens</h1>
+        <ul className="nav-links">
+            <li><Link to="/">Home</Link></li> 
             <li><Link to="/create">Create Event</Link></li>
             {currentUser ? (
-                <div>
-                    <span>Logged in as: {currentUser.username}</span>
-                    <button onClick={onLogout}>Logout</button>
+                <div className="user-section">
+                    <span className="username">Logged in as: {currentUser.username}</span>
+                    <button className="logout-btn" onClick={onLogout}>Logout</button>
                 </div>
             ) : (
-                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/login" className="login-link">Login</Link></li>
             )}
         </ul>
     </nav>

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './Searchbar.css'
+
 interface SearchBarProps {
     onSearch: (query: string) => void;
 }
@@ -13,14 +15,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="search-bar">
+        <form onSubmit={handleSubmit} className="search-form">
             <input
                 type="text"
-                placeholder="Search event title and descrption..."
+                className="search-input"
+                placeholder="Search event title..."
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <button type="submit" className="search-submit-btn">Search</button>
         </form>
     );
 };

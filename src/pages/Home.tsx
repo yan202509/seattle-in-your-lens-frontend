@@ -3,6 +3,7 @@ import { getAllEvents, likeEvent, searchEvents  } from '../api/axios';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
+import SearchBar from '../components/Searchbar';
 import './Home.css';
 import '../App.css';
 
@@ -20,7 +21,6 @@ interface Event {
 
 function Home() {
     const [events, setEvents] = useState<Event[]>([]);
-    const [query, setQuery] = useState("");
     const location = useLocation();
 
     useEffect(() => {
@@ -28,7 +28,6 @@ function Home() {
         try {
             const response = await getAllEvents ();
             setEvents(response);
-            setQuery("");
         } catch (err) {
             console.error('Error fetching events:', err);
         }
@@ -38,15 +37,14 @@ function Home() {
     }, [location]);
 
     // search 
-    const handleSearch = async (e: React.FormEvent) => {
-            e.preventDefault();
-            try {
-                const results = await searchEvents(query);
-                setEvents(results);
-            } catch (err) {
-                console.error('Search failed', err);
-            }
-        };
+const handleSearch = async (searchQuery: string) => {
+    try {
+        const results = await searchEvents(searchQuery);
+        setEvents(results);
+    } catch (err) {
+        console.error('Search failed', err);
+    }
+};
 
 
     const handleLike = async (e: React.MouseEvent, id: number) => {
@@ -70,16 +68,12 @@ function Home() {
 
     return (
     <div className="home-container">
-        <h1>Your Next Adventure Starts Here</h1>
-            {/* search form  */}
-            <form onSubmit={handleSearch} className="search-form"> 
-                <input 
-                    placeholder="Search..." 
-                    value={query} 
-                    onChange={(e) => setQuery(e.target.value)} 
-                />
-                <button type="submit">Search</button>
-            </form>
+    <div className="sub-title-and-search">
+        <h1>Your Next Adventure Starts Right Here</h1>
+        
+        {/* Use your component here! */}
+        <SearchBar onSearch={(query) => handleSearch(query)} /> 
+    </div>
 
         <div className="events-grid">
             {events.map((event) => (
