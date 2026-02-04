@@ -1,0 +1,62 @@
+/* Centers the whole page content */
+.home-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center; /* This centers the Title and Search Bar */
+}
+
+/* Centers the search bar items */
+.search-form {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background-color: #97A87A;
+    padding: 1em; 
+}
+
+input {
+    background-color: white;
+}
+
+/* Creates a 3-column grid that centers itself */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    background-color: #FFA239;
+    padding: 5px; 
+}
+
+/* Styles the cards and centers their text */
+.event-card-wrapper {
+    border: 15px solid black;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* Makes sure the link doesn't look like a blue underline */
+.event-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
+.details {
+    color: #3498db;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.like-btn {
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+}

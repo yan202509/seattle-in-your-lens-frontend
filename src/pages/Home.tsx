@@ -3,6 +3,9 @@ import { getAllEvents, likeEvent, searchEvents  } from '../api/axios';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
+import './Home.css';
+import '../App.css';
+
 interface Event {
     event_id: number;
     eventTitle: string; 
@@ -67,7 +70,7 @@ function Home() {
 
     return (
     <div className="home-container">
-        <h1>Seattle In Your Lens</h1>
+        <h1>Your Next Adventure Starts Here</h1>
             {/* search form  */}
             <form onSubmit={handleSearch} className="search-form"> 
                 <input 
@@ -80,9 +83,9 @@ function Home() {
 
         <div className="events-grid">
             {events.map((event) => (
-                <div key={event.event_id}>
+                <div key={event.event_id} className="event-card-wrapper">
                     <Link to={`/event/${event.event_id}`} className="event-link">
-                        <h3>{event.eventTitle}</h3>
+                        <h3 className="event-title">{event.eventTitle}</h3>
                         <p className="description">{event.event_description}</p>
                         <div className="details">
                             {event.event_season} | {event.event_type} | {event.cost_level}
