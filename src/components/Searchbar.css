@@ -26,3 +26,11 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+.search-form button:hover {
+    background: white;
+    color: black;
+    /* transition makes the color change smooth instead of a "snap" */
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.10);
+}

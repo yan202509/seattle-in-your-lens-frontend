@@ -12,7 +12,7 @@ interface NavbarProps {
 function Navbar({ currentUser,  onLogout }: NavbarProps) {
     return (
         <nav className="main-navbar">
-        <h1 className="nav-logo">Seattle In Your Lens</h1>
+        <h1 className="nav-logo">Seattle In Your Lens 📸</h1>
         <ul className="nav-links">
             <li><Link to="/">Home</Link></li> 
             <li><Link to="/create">Create Event</Link></li>
