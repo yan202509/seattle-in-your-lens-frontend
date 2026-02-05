@@ -1,0 +1,81 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Fill the screen height */
+    padding: 10px;     /* Prevents the box from touching the phone edges */
+    box-sizing: border-box; /* Crucial: includes padding in width calculations */
+}
+
+.login-card {
+    background: white;
+    border: 4px solid black;
+    padding: 2rem;      /* Uses relative units */
+    box-shadow: 8px 8px 0px black;
+    
+    width: 90%;         /* On mobile, it takes up 90% of the width */
+    max-width: 400px;   /* On a laptop, it stops growing at 400px */
+    
+    height: auto;       /* Shrinks to fit the content exactly */
+}
+
+.login-card h1 {
+    margin-top: 0;
+    font-family: 'Archivo Black', sans-serif; /* Use your chunky font */
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    width: 90px; /* controls alignment of colons */
+    margin-bottom: 0; /* remove vertical spacing */
+    font-size: 1.2rem; 
+}
+
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 3px solid black;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-group input:focus {
+    background-color: #f0f0f0; /* Slight gray on focus */
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background: #FFCC00; /* Your Seattle gold color */
+    border: 3px solid black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px black;
+    transition: all 0.1s;
+}
+
+.login-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px black;
+}
+
+.login-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px black;
+}

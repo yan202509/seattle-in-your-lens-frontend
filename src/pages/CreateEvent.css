@@ -1,0 +1,97 @@
+.create-event-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    
+    justify-content: flex-start; 
+    
+    padding: 20px; 
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.create-event-card {
+    width: 100%;
+    max-width: 450px; 
+}
+
+.create-event-card h1 {
+    font-family: 'Archivo Black', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+    border-bottom: 4px solid black;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.event-form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.event-form-group label {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+
+.event-form-group input, 
+.event-form-group textarea, 
+.event-form-group select {
+    padding: 12px;
+    border: 3px solid black;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    background: white;
+}
+
+.event-form-group textarea {
+    min-height: 100px;
+    resize: vertical; 
+}
+
+.event-form-group input:focus, 
+.event-form-group select:focus {
+    background: #f0f0f0;
+}
+
+
+.submit-event-btn {
+    width: 100%;
+    padding: 18px;
+    background: white; 
+    border: 3px solid black;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px black;
+    transition: all 0.1s;
+    margin-top: 10px;
+}
+
+.submit-event-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px black;
+    background: #FFCC00; 
+    color: black;
+}
+
+.submit-event-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px black;
+}
+/* 
+@media (min-width: 2200px) {
+    .event-form-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+} */

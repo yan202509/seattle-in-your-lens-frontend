@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import type { User } from '../types.ts';
 import api from '../api/axios';
 
+import './Login.css';
+
 interface LoginProps {
     onLoginSuccess: (user: User) => void;
 }
@@ -30,27 +32,31 @@ function Login({ onLoginSuccess }: LoginProps) {
     };
 
     return (
-        <div>
-            <h1>Login Page</h1>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label>Username: </label>
-                    <input 
-                        type="text" 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                    />
-                </div>
-                <div>
-                    <label>Password: </label>
-                    <input 
-                        type="password" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form>
+        <div className="login-container">
+            <div>
+                <h1>Login Page</h1>
+                <form onSubmit={handleLogin}>
+                    <div className="form-group">
+                        <label>Username: </label>
+                        <input 
+                            type="text" 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)} 
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Password: </label>
+                        <input 
+                            type="password" 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)} 
+                        />
+                    </div>
+                    <button type="submit" className="login-button">
+                    LET'S EXPLORE →
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }
