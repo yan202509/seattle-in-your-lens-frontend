@@ -66,7 +66,7 @@ function EventDetails({ currentUser }: EventDetailsProps) {
         <p>
             {event.event_season} | {event.event_type} | {event.cost_level}
         </p>
-        <p>{new Date(event.event_date).toLocaleString()}</p>
+        <p>{new Date(event.event_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
         <hr />
             
             <ReviewForm 
