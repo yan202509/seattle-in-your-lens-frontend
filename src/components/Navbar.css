@@ -4,8 +4,9 @@
     align-items: center;
     padding: 15px 40px;
     background-color: white;
-    border-bottom: 5px solid black; /* Bold bottom border */
+    border-bottom: 5px solid black; 
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .nav-logo {
@@ -22,9 +23,10 @@
     gap: 25px;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap;
 }
 
-/* Style for the Home, Create, Login links */
+
 .nav-links a {
     text-decoration: none;
     color: black;
@@ -46,7 +48,6 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    /* border-left: 3px solid black; */
     padding-left: 20px;
 }
 
