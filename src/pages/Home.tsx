@@ -84,7 +84,15 @@ const handleSearch = async (searchQuery: string) => {
                         <div className="details">
                             {event.event_season} | {event.event_type} | {event.cost_level}
                         </div>
-                        <p>{new Date(event.event_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                        <p>
+                            {new Date(event.event_date).toLocaleString([], { 
+                                year: 'numeric',
+                                month: 'short', 
+                                day: 'numeric', 
+                                hour: '2-digit', 
+                                minute: '2-digit' 
+                            })}
+                        </p>
                         <button className="like-btn" onClick={(e) => handleLike(e, event.event_id)}>
                                 💚 {event.likes}
                             </button>

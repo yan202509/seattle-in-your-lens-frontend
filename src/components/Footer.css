@@ -1,0 +1,29 @@
+.main-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px; 
+    background-color: white;
+    border-top: 5px solid black; 
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-logo {
+    font-size: 1rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.footer-copyright {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin: 0;
+}

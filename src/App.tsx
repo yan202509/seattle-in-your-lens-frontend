@@ -6,6 +6,7 @@ import EventDetails from './pages/EventDetails';
 import CreateEvent from './pages/CreateEvent';
 import type { User } from './types';
 import Login from './pages/Login';
+import Footer from './components/Footer';
 
 import './App.css';
 import NoMatch from './pages/NoMatch';
@@ -38,6 +39,8 @@ return (
         <Route path="*" element={<NoMatch />} />
         <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
       </Routes>
+
+      <Footer />
     </>
   );
 }

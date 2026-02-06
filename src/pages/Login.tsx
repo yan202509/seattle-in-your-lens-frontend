@@ -33,7 +33,7 @@ function Login({ onLoginSuccess }: LoginProps) {
 
     return (
         <div className="login-container">
-            <div>
+            <div className="login-card">
                 <h1>Login Page</h1>
                 <form onSubmit={handleLogin}>
                     <div className="form-group">
