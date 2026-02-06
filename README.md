@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# 📸 Seattle In Your Lens — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Seattle In Your Lens is a community-driven web application that helps people discover and share things to do in Seattle using clear categories such as seasonality, environment, activity type, and cost.
 
-Currently, two official plugins are available:
+The project is designed for people who are not tourists, but not yet locals — users who want to step outside their comfort zone and explore Seattle in a more intentional way.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚢 Deployment
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Frontend: [https://seattle-in-your-lens-frontend.vercel.app/](https://seattle-in-your-lens-frontend.vercel.app/)  
+- Backend: [https://seattle-in-your-lens-backend.up.railway.app](https://seattle-in-your-lens-backend.up.railway.app)
 
-## Expanding the ESLint configuration
+---
+## 🧰 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Vite
+- Axios
+- Custom CSS (Neo-Brutalist system)
+- Deployed on Netlify
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🚀 Core Features (Implemented)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Feature | Description |
+|------|------------|
+| **Event Discovery** | Browse upcoming Seattle events in a grid-based layout. |
+| **Search** | Keyword-based search for event titles. |
+| **Event Details** | View full descriptions, metadata, and creator information of a single event. |
+| **Engagement** | Like events anomynously and view review threads. |
+| **Authentication** | Mock login system (placeholder for future JWT authentication). |
+| **Responsive Layout** | Layout adapts to different screen sizes, including smaller screens, with a footer that stays at the bottom. |
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧭 Planned Features
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+These features were planned in the original capstone concept and will be implemented in future updates.
+
+- Advanced filtering/sorting (season, indoor/outdoor, cost level)
+- Map view and neighborhood-based browsing
+- Group size tags (solo, pairs, groups)
+- Expanded review interactions
+- JWT-protected routes for creating and managing events.
+
+---
+
+
+## 🎨 Design Language (Neo-Brutalist)
+
+This project follows a high-contrast, industrial design approach.
+
+> **Primary Accent:** `#FFCC00` (Seattle Gold)  
+> **Border Weight:** `5px solid black`  
+> **Shadow Style:** Hard 8px offset  
+
+The visual system intentionally prioritizes legibility and structure over ornamentation.
+
+---
+## 🏗️ Project Architecture
+
+```text
+src/
+ ├── api/           # Axios instance and API service layers
+ ├── components/    # Reusable UI components
+ │    ├── NavBar.tsx
+ │    ├── SearchBar.tsx
+ │    ├── ReviewForm.tsx
+ │    └── Footer.tsx
+ ├── pages/         # Page-level views
+ │    ├── Home.tsx
+ │    ├── Login.tsx
+ │    ├── CreateEvent.tsx
+ │    ├── EventDetails.tsx
+ │    └── NoMatch.tsx
+ ├── types.ts       # Shared TypeScript interfaces
+ ├── App.tsx        # Main app layout and routes
+ ├── main.tsx       # App entry point
+ └── App.css        # Global CSS and Neo-Brutalist variables
+
+
+

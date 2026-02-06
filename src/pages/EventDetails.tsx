@@ -4,6 +4,7 @@ import { getEventById, deleteEvent } from '../api/axios';
 import { ReviewForm } from '../components/ReviewForm';
 import type { User, Event, Review } from '../types';
 
+import './EventDetails.css';
 
 interface EventDetailsProps {
     currentUser: User | null;
@@ -52,39 +53,48 @@ function EventDetails({ currentUser }: EventDetailsProps) {
     if (!event) return <p>Loading event...</p>;
 
     return (
-        <div> 
+        <div className="event-details-container"> 
 
             {currentUser && (currentUser.role === 'ADMIN' || (event.creator && currentUser.id === event.creator.id) ) && (
-                <div>
+                <div className="mock-actions">
                     <p>Actions:</p>
-                    <button onClick={handleDelete}>Delete Event</button>
+                    <button className="delete-btn" onClick={handleDelete}>Delete Event</button>
                 </div>
             )}
         <h1>{event.eventTitle}</h1>
         <p><strong>Created by:</strong> {event.creator?.username || "Someone really nice but mysterious"}</p>
-        <p>{event.event_description}</p>
-        <p>
+        <p className="event-description">{event.event_description}</p>
+        <p className="event-meta">
             {event.event_season} | {event.event_type} | {event.cost_level}
         </p>
-        <p>{new Date(event.event_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+            <p>
+                {new Date(event.event_date).toLocaleString([], { 
+                    year: 'numeric',
+                    month: 'short', 
+                    day: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                })}
+            </p>        
         <hr />
-            
-            <ReviewForm 
-                eventId={event.event_id} 
-                onReviewSuccess={handleNewReview} 
-            />
-            {event.reviews && event.reviews.length > 0 ? (
-                event.reviews.map((review) => (
-                    <div key={review.id}>
-                        <p>Rating: {review.rating}/5</p>
-                        <p>{review.comment}</p>
-                        <small>{new Date(review.createdAt).toLocaleDateString()}</small>
-                        <br /><br />
-                    </div>
-                ))
-            ) : (
-                <p>No comments yet.</p>
-            )}
+            <div className="reviews-list">
+                <ReviewForm 
+                    eventId={event.event_id} 
+                    onReviewSuccess={handleNewReview} 
+                />
+                {event.reviews && event.reviews.length > 0 ? (
+                    event.reviews.map((review) => (
+                        <div key={review.id}>
+                            <p>Rating: {review.rating}/5</p>
+                            <p>{review.comment}</p>
+                            <small>{new Date(review.createdAt).toLocaleDateString()}</small>
+                            <br /><br />
+                        </div>
+                    ))
+                ) : (
+                    <p>No comments yet.</p>
+                )}
+            </div>
         </div>
     );
 }
