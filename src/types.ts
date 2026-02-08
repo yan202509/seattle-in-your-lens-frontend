@@ -20,6 +20,7 @@ export interface Event {
     event_type: string;
     cost_level: string;
     event_date: string;
+    likes: number;
     reviews: Review[];
     creator: User | null;
 }

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getEventById, deleteEvent } from '../api/axios';
 import { ReviewForm } from '../components/ReviewForm';
 import type { User, Event, Review } from '../types';
+import { EventInfo } from '../components/EventInfo';
 
 import './EventDetails.css';
 
@@ -61,22 +62,12 @@ function EventDetails({ currentUser }: EventDetailsProps) {
                     <button className="delete-btn" onClick={handleDelete}>Delete Event</button>
                 </div>
             )}
-        <h1>{event.eventTitle}</h1>
-        <p><strong>Created by:</strong> {event.creator?.username || "Someone really nice but mysterious"}</p>
-        <p className="event-description">{event.event_description}</p>
-        <p className="event-meta">
-            {event.event_season} | {event.event_type} | {event.cost_level}
-        </p>
-            <p>
-                {new Date(event.event_date).toLocaleString([], { 
-                    year: 'numeric',
-                    month: 'short', 
-                    day: 'numeric', 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                })}
-            </p>        
-        <hr />
+                <h1>{event.eventTitle}</h1>
+                <p><strong>Created by:</strong> {event.creator?.username || "Someone mysterious"}</p>
+                <p className="event-description">{event.event_description}</p>
+                <EventInfo event={event} />
+
+                <hr />
             <div className="reviews-list">
                 <ReviewForm 
                     eventId={event.event_id} 
