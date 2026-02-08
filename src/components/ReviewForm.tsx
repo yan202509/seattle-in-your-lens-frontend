@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { addReview } from '../api/axios';
 
+import './ReviewForm.css';
 
 interface Review {
     id: number;
@@ -36,12 +37,13 @@ export function ReviewForm({ eventId, onReviewSuccess }: ReviewFormProps) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h3>Leave a Review</h3>
-            <div>
+        <form  className="review-form-container" onSubmit={handleSubmit}>
+            <h3 className="review-form-title">Leave a Review</h3>
+            <div className="review-form-group">
                 <label htmlFor="rating-select">Rating: </label>
                 <select 
                     id="rating-select" 
+                    className="review-select"
                     name="rating"
                     value={rating} onChange={(e) => setRating(Number(e.target.value))}>
                     <option value="5">5 Stars</option>
@@ -54,6 +56,7 @@ export function ReviewForm({ eventId, onReviewSuccess }: ReviewFormProps) {
             <br />
             <textarea
                 id="comment-box"
+                className="review-textarea"
                 name="comment"
                 placeholder="Write your comment here!!!!!!..."
                 value={comment}
@@ -61,7 +64,7 @@ export function ReviewForm({ eventId, onReviewSuccess }: ReviewFormProps) {
                 required
             />
             <br />
-            <button type="submit">Submit Review</button>
+            <button type="submit" className="review-submit-btn">Submit Review</button>
         </form>
     );
 }
