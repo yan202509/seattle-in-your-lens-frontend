@@ -73,13 +73,14 @@ function EventDetails({ currentUser }: EventDetailsProps) {
                     eventId={event.event_id} 
                     onReviewSuccess={handleNewReview} 
                 />
+                <hr />
                 {event.reviews && event.reviews.length > 0 ? (
                     event.reviews.map((review) => (
                         <div key={review.id}>
                             <p>Rating: {review.rating}/5</p>
                             <p>{review.comment}</p>
                             <small>{new Date(review.createdAt).toLocaleDateString()}</small>
-                            <br /><br />
+                            <hr />
                         </div>
                     ))
                 ) : (

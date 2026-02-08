@@ -15,10 +15,11 @@ export function EventInfo({ event }: EventInfoProps) {
 
     return (
         <div className="event-info-block">
-            <div className="details-line">
-                {event.event_season} | {event.event_type} | ${event.cost_level}
-            </div>
             <p className="date-line">{formattedDate}</p>
+            <div className="details-line">
+                {event.event_season} | {event.event_type} | $ {event.cost_level}
+            </div>
+
         </div>
     );
 }
