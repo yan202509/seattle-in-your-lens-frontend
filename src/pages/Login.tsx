@@ -34,7 +34,7 @@ function Login({ onLoginSuccess }: LoginProps) {
     return (
         <div className="login-container">
             <div className="login-card">
-                <h1>Login Page</h1>
+                <h2>Login Page</h2>
                 <form onSubmit={handleLogin}>
                     <div className="form-group">
                         <label>Username: </label>

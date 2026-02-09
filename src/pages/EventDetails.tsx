@@ -63,7 +63,7 @@ function EventDetails({ currentUser }: EventDetailsProps) {
                 </div>
             )}
                 <h1>{event.eventTitle}</h1>
-                <p><strong>Created by:</strong> {event.creator?.username || "Someone mysterious"}</p>
+                <p><strong>Created by:</strong> {event.creator?.username || "Someone mysterious but nice"}</p>
                 <p className="event-description">{event.event_description}</p>
                 <EventInfo event={event} />
 

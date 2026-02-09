@@ -46,11 +46,11 @@ export function ReviewForm({ eventId, onReviewSuccess }: ReviewFormProps) {
                     className="review-select"
                     name="rating"
                     value={rating} onChange={(e) => setRating(Number(e.target.value))}>
-                    <option value="5">5 Stars</option>
-                    <option value="4">4 Stars</option>
-                    <option value="3">3 Stars</option>
-                    <option value="2">2 Stars</option>
-                    <option value="1">1 Star</option>
+                    <option value="5">5★</option>
+                    <option value="4">4★</option>
+                    <option value="3">3★</option>
+                    <option value="2">2★</option>
+                    <option value="1">1★</option>
                 </select>
             </div>
             <br />
@@ -58,7 +58,7 @@ export function ReviewForm({ eventId, onReviewSuccess }: ReviewFormProps) {
                 id="comment-box"
                 className="review-textarea"
                 name="comment"
-                placeholder="Write your comment here!!!!!!..."
+                placeholder="Write your comment here!..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 required
