@@ -76,10 +76,16 @@ function EventDetails({ currentUser }: EventDetailsProps) {
                 <hr />
                 {event.reviews && event.reviews.length > 0 ? (
                     event.reviews.map((review) => (
-                        <div key={review.id}>
+                        <div  className="review-individual" key={review.id}>
                             <p>Rating: {review.rating}/5</p>
                             <p>{review.comment}</p>
-                            <small>{new Date(review.createdAt).toLocaleDateString()}</small>
+                            <small>
+                                Rated on: {new Date(review.createdAt).toLocaleDateString('en-US', { 
+                                    month: 'short', 
+                                    day: 'numeric', 
+                                    year: 'numeric' 
+                                })}
+                            </small>
                             <hr />
                         </div>
                     ))
