@@ -45,6 +45,7 @@ These features were planned in the original capstone concept and will be impleme
 - Group size tags (solo, pairs, groups)
 - Expanded review interactions
 - JWT-protected routes for creating and managing events.
+- Images upload
 
 ---
 
