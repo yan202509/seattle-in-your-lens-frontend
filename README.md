@@ -19,7 +19,7 @@ The project is designed for people who are not tourists, but not yet locals — 
 - Vite
 - Axios
 - Custom CSS (Neo-Brutalist system)
-- Deployed on Netlify
+- Deployed on Vercel 
 
 ---
 

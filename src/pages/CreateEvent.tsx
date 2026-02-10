@@ -10,7 +10,7 @@ interface CreateEventProps {
 }
 
 function CreateEvent({ currentUser }: CreateEventProps) {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // return to the Home page after create the event
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -23,7 +23,7 @@ function CreateEvent({ currentUser }: CreateEventProps) {
         e.preventDefault();
         
         try {
-            const response = await api.post('/events', {
+            const response = await api.post('/events', { // axios 
                 eventTitle: title,
                 event_description: description,
                 event_season: season,
